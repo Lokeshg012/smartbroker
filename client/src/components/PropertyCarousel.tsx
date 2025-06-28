@@ -1,5 +1,4 @@
-
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import PropertyCard from './PropertyCard';
@@ -27,6 +26,9 @@ const PropertyCarousel: React.FC<PropertyCarouselProps> = ({ properties, title }
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const CARD_WIDTH = 340; // Approximate width including spacing
 
   const checkScrollButtons = () => {
     if (scrollRef.current) {
@@ -36,33 +38,48 @@ const PropertyCarousel: React.FC<PropertyCarouselProps> = ({ properties, title }
     }
   };
 
-  const scrollLeft = () => {
+  const scrollToIndex = (index: number) => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -320, behavior: 'smooth' });
-      setTimeout(checkScrollButtons, 300);
+      scrollRef.current.scrollTo({
+        left: index * CARD_WIDTH,
+        behavior: 'smooth',
+      });
+      setActiveIndex(index);
     }
+  };
+
+  const scrollLeft = () => {
+    if (activeIndex > 0) scrollToIndex(activeIndex - 1);
   };
 
   const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
-      setTimeout(checkScrollButtons, 300);
+    if (activeIndex < properties.length - 1) {
+      scrollToIndex(activeIndex + 1);
+    } else {
+      scrollToIndex(0); // loop back to start
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     checkScrollButtons();
     const handleResize = () => checkScrollButtons();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [properties]);
 
+  useEffect(() => {
+    const autoScroll = setInterval(() => {
+      scrollRight();
+    }, 2500); // Change every 2.5 seconds
+    return () => clearInterval(autoScroll);
+  }, [activeIndex, properties]);
+
   return (
     <div className="relative">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
       </div>
-      
+
       <div className="relative group">
         {/* Left Arrow */}
         <Button

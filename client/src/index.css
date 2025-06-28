@@ -138,6 +138,14 @@
   scroll-behavior: smooth;
 }
 
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-bounce-slow {
+  animation: bounceSlow 3s infinite;
+}
+
 /* Snap scrolling */
 .snap-x {
   scroll-snap-type: x mandatory;
