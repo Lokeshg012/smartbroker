@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import PropertyCarousel from '../components/PropertyCarousel';
 import { mockProperties } from '../data/mockProperties';
 import TestimonialCarousel from '../components/TestimonialCarousel';
+import WhyUs from '../components/WhyUs';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -159,8 +160,9 @@ const Home = () => {
         </div>
       </section>
 
-      // Add this section below the property carousel and above the trust section
-<TestimonialCarousel />
+      <WhyUs />
+
+      <TestimonialCarousel />
 
       {/* Trust Section */}
       <section className="py-12 bg-white">

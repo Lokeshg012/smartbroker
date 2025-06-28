@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +15,7 @@ import ChatbotRent from "./pages/ChatbotRent";
 import BuyProperties from "./pages/BuyProperties";
 import SellProperties from "./pages/SellProperties";
 import Invest from "./pages/Invest";
+import Map from "./pages/Map";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +37,7 @@ const App = () => (
             <Route path="/buy-properties" element={<BuyProperties />} />
             <Route path="/sell-properties" element={<SellProperties />} />
             <Route path="/invest" element={<Invest />} />
+            <Route path="/map" element={<Map />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Search, Bell, User } from 'lucide-react';
+import { Search, Bell, User, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate, useLocation } from 'react-router-dom';
 import NotificationBox from '@/components/NotificationBox';
@@ -94,7 +93,14 @@ const Header = () => {
                 onClick={handleSmartBrokerAIClick}
                 className="font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 transition-colors"
               >
-                Smart Broker AI
+                Help & Support
+              </button>
+              <button 
+                onClick={() => navigate('/Map')}
+                className={`font-medium transition-colors flex items-center space-x-1 ${isActive('/Map') ? 'text-teal-600 dark:text-teal-400' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100'}`}
+              >
+                <MapPin className="h-4 w-4" />
+                <span>Map</span>
               </button>
             </nav>
 
@@ -109,6 +115,16 @@ const Header = () => {
                 <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400 dark:text-gray-500" />
               </div>
               <DarkModeToggle />
+              
+              {/* Map Icon Button for Mobile/Quick Access */}
+              <button 
+                onClick={() => navigate('/Map')}
+                className={`p-2 rounded-lg transition-colors ${isActive('/Map') ? 'bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-200'}`}
+                title="View Properties on Map"
+              >
+                <MapPin className="h-5 w-5" />
+              </button>
+              
               <div className="relative">
                 <button onClick={toggleNotifications} className="relative">
                   <Bell className="h-6 w-6 text-gray-600 dark:text-gray-400 cursor-pointer hover:text-gray-900 dark:hover:text-gray-200 transition-colors" />
