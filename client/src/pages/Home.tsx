@@ -8,6 +8,8 @@ import PropertyCarousel from '../components/PropertyCarousel';
 import { mockProperties } from '../data/mockProperties';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import WhyUs from '../components/WhyUs';
+import PropertyTypeCards from '../components/PropertyTypeCards';
+import UpcomingAISection from '../components/Comingsoon';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -164,12 +166,16 @@ const Home = () => {
 
       <TestimonialCarousel />
 
+      <PropertyTypeCards />
+
       {/* Trust Section */}
       <section className="py-12 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gray-600 font-medium">Trusted by over 10,000 users across India.</p>
         </div>
       </section>
+
+      <UpcomingAISection />
 
       {/* Newsletter Section */}
       <section className="py-16 bg-gray-50">
